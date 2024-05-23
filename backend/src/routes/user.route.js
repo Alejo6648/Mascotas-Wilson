@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { validar, registrar } from "../controllers/controller.user.js";
+import { Register, validate } from "../controllers/usuarios.controller.js";
 
 const routeUser = Router()
 
-routeUser.post('/validar', validar)
-routeUser.post('/registrar', registrar)
+routeUser.post('/validar', validate)
+routeUser.post('/registrar', Register)
 
 export default routeUser

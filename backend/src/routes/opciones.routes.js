@@ -1,14 +1,11 @@
 import { Router } from "express";
-import { listarCategorias, listarGenero, listarRazas, listarUsers } from "../controllers/controller.opciones.js";
+import { GetCategories, GetGender, GetRace, GetUsers } from "../controllers/opciones.controller.js";
 
 const routeOpciones = Router()
 
-routeOpciones.get('/categorias', listarCategorias)
-
-routeOpciones.get('/genero', listarGenero)
-
-routeOpciones.get('/razas', listarRazas)
-
-routeOpciones.get('/users', listarUsers)
+routeOpciones.get('/categorias', GetCategories)
+routeOpciones.get('/genero', GetGender)
+routeOpciones.get('/razas', GetRace)
+routeOpciones.get('/users', GetUsers)
 
 export default routeOpciones

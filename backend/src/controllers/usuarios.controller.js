@@ -1,9 +1,8 @@
-
 import { pool } from "./../database/conexion.js";
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt'
 
-export const registrar = async (req, res) => {
+export const Register = async (req, res) => {
     try {
       const { nombres, email, password } = req.body;
       const bcryptPassword = bcrypt.hashSync(password, 12);
@@ -11,16 +10,16 @@ export const registrar = async (req, res) => {
         `INSERT INTO user (nombres, email, password) VALUES ('${nombres}', '${email}', '${bcryptPassword}')`
       );
       if (response.length > 0) {
-        res.status(200).json("Usuario creado con exito");
+        res.status(200).json("Usuario registrado");
       } else {
-        res.status(404).json("Error al crear el usuario");
+        res.status(404).json("Usuario no confirmado");
       }
     } catch (error) {
       res.status(500).json("Error en el sistema" + error);
     }
   };
 
-export const validar = async (req, res) => {
+export const validate = async (req, res) => {
     try {
       const { email, password } = req.body;
       const sql = `SELECT * FROM user WHERE email = '${email}'`;
@@ -36,7 +35,7 @@ export const validar = async (req, res) => {
       const token = jwt.sign({ rows }, process.env.AUT_SECRET, {
         expiresIn: process.env.AUT_EXPIRE,
       });
-      res.status(200).json({ user, token, message: "Inicio de sesión éxitoso" });
+      res.status(200).json({ user, token, message: "Iniciaste sesion!!" });
     } catch (error) {
       res.status(500).json({ message: "Error en el servidor" + error });
     }

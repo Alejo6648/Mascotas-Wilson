@@ -1,7 +1,7 @@
 import { pool } from "../database/conexion.js"
 import { query } from "express"
 
-export const listarRazas = async (req, res) => {
+export const GetRace = async (req, res) => {
     try {
         let sql = 'SELECT * FROM razas'
         const [result] = await pool.query(sql)
@@ -10,7 +10,7 @@ export const listarRazas = async (req, res) => {
         }else{
             res.status(404).json({
                 status: 404,
-                message: 'Not found'
+                message: 'No fue posible listar'
             })
         }
     } catch (error) {
@@ -21,7 +21,7 @@ export const listarRazas = async (req, res) => {
     }
 }
 
-export const listarCategorias = async (req, res) => {
+export const GetCategories = async (req, res) => {
     try {
         let sql = 'SELECT * FROM categorias'
         const [result] = await pool.query(sql)
@@ -30,7 +30,7 @@ export const listarCategorias = async (req, res) => {
         }else{
             res.status(404).json({
                 status: 404,
-                message: 'Not found'
+                message: 'no fue posible listar las categorias'
             })
         }
     } catch (error) {
@@ -41,7 +41,7 @@ export const listarCategorias = async (req, res) => {
     }
 }
 
-export const listarGenero = async (req, res) => {
+export const GetGender = async (req, res) => {
     try {
         let sql = 'SELECT * FROM generos'
         const [result] = await pool.query(sql)
@@ -50,7 +50,7 @@ export const listarGenero = async (req, res) => {
         }else{
             res.status(404).json({
                 status: 404,
-                message: 'Not found'
+                message: 'No fue posible listar los generos'
             })
         }
     } catch (error) {
@@ -61,7 +61,7 @@ export const listarGenero = async (req, res) => {
     }
 }
 
-export const listarUsers = async (req, res) => {
+export const GetUsers = async (req, res) => {
     try {
         let sql = 'SELECT * FROM user'
         const [result] = await pool.query(sql)
@@ -70,7 +70,7 @@ export const listarUsers = async (req, res) => {
         }else{
             res.status(404).json({
                 status: 404,
-                message: 'Not found'
+                message: 'No fue posible listar los usuarios'
             })
         }
     } catch (error) {

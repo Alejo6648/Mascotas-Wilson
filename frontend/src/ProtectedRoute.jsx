@@ -20,7 +20,7 @@ function ProtectedRoute() {
   }, [auth, navigate]);
 
   if (!auth) {
-    return null; // Retorna null mientras el useEffect maneja la redirección
+    return null;
   }
 
   return <Outlet />;

@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { registrarMascota, listarMascotas, actualizarMascota, eliminarMascota, buscarMascota, cargarImage } from "../controllers/controller.mascotas.js";
-import { validarToken } from "../controllers/controller.user.js";
+import { cargarImage, Getpet, RegisterPet, UpdatePet, SearchPet, DeletePet } from "../controllers/mascotas.controller.js";
+import { validarToken } from "../controllers/usuarios.controller.js";
 
 const routeMascotas = Router()
 
-routeMascotas.get('/listar',validarToken, listarMascotas)
-routeMascotas.post('/registrar', validarToken, cargarImage, registrarMascota)
-routeMascotas.put('/actualizar/:id', validarToken, cargarImage, actualizarMascota)
-routeMascotas.get('/buscar/:id',validarToken, buscarMascota)
-routeMascotas.delete('/eliminar/:id',validarToken, eliminarMascota)
+routeMascotas.get('/listar',validarToken, Getpet)
+routeMascotas.post('/registrar', validarToken, cargarImage, RegisterPet)
+routeMascotas.put('/actualizar/:id', validarToken, cargarImage, UpdatePet)
+routeMascotas.get('/buscar/:id',validarToken, SearchPet)
+routeMascotas.delete('/eliminar/:id',validarToken, DeletePet)
 
 export default routeMascotas

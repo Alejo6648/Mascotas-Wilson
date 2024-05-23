@@ -16,7 +16,7 @@ const storage = multer.diskStorage(
 const upload = multer({storage: storage})
 export const cargarImage = upload.single('image')
 
-export const registrarMascota = async (req, res) => {
+export const RegisterPet = async (req, res) => {
     try {
         
         const {nombre, raza, genero, categoria, dueno} = req.body
@@ -29,7 +29,7 @@ export const registrarMascota = async (req, res) => {
         if(rows.affectedRows>0){
             res.status(200).json({
                 status: 200,
-                message: 'Se registro con exito la mascota'
+                message: 'Se registro la mascota'
             })
         }else{
             res.status(403).json({
@@ -46,7 +46,7 @@ export const registrarMascota = async (req, res) => {
     }
 }
 
-export const listarMascotas = async (req, res) => {
+export const Getpet = async (req, res) => {
     try {
         let sql = `SELECT id, nombre_mascota, r.*, nombre_categoria AS categoria, nombre_genero AS genero, image 
         FROM mascotas m
@@ -71,7 +71,7 @@ export const listarMascotas = async (req, res) => {
     }
 }
 
-export const actualizarMascota = async (req, res) => {
+export const UpdatePet = async (req, res) => {
     try {
       const { id } = req.params;
       const { nombre, raza, genero, categoria } = req.body;
@@ -99,16 +99,16 @@ export const actualizarMascota = async (req, res) => {
       const [rows] = await pool.query(sql, params);
   
       if (rows.affectedRows > 0) {
-        res.status(200).json({message: "Mascota actualizada éxitosamente",});
+        res.status(200).json({message: "Mascota actualizada",});
       } else {
-        res.status(404).json({message: "Error al actualizar la mascota",});
+        res.status(404).json({message: "No se ha podido actualizar la mascota",});
       }
     } catch (error) {
       res.status(500).json({ message: "Error del servidor" + error,});
     }
   };
 
-export const buscarMascota = async (req, res) => {
+export const SearchPet = async (req, res) => {
     try {
         const {id} = req.params
 
@@ -131,7 +131,7 @@ export const buscarMascota = async (req, res) => {
     }
 }
 
-export const eliminarMascota = async (req, res) => {
+export const DeletePet = async (req, res) => {
     try {
         const {id} = req.params
 
@@ -140,12 +140,12 @@ export const eliminarMascota = async (req, res) => {
         if(rows.affectedRows>0){
             res.status(200).json({
                 status: 200,
-                message: 'Se eliminó con éxito la mascota'
+                message: 'Se eliminó la mascota'
             })
         }else{
             res.status(403).json({
                 status: 403,
-                message: 'No fue posible eliminar la mascota'
+                message: 'No se ha podido eliminar la mascotas, intente de nuevo'
             })
         }
     } catch (error) {
